@@ -14,3 +14,13 @@
 	align-self: center;
 	justify-self: center;
 }
+
+.form-popup {
+	background-color: bisque;
+	display: none;
+	position: fixed;
+	bottom: 45vh;
+	right: 40vw;
+	left: 40vw;
+	z-index: 5;
+}
