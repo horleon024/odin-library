@@ -7,6 +7,8 @@
 
 :root {
 	--header-bg-color: lightgray;
+	--read-card-color: lightgreen;
+	--not-read-card-color: rgb(233, 100, 100);
 }
 
 .container {
@@ -44,12 +46,6 @@
 
 .newbook:hover {
 	background-color: var(--header-bg-color);
-}
-
-.books-container {
-	display: grid;
-	grid-template-columns: repeat(autofill, 300px);
-	grid-template-rows: auto;
 }
 
 .form-popup {
@@ -117,10 +113,50 @@ label {
 	opacity: 0.8;
 }
 
+.books-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, 300px);
+	grid-template-rows: auto;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+	gap: 3vh;
+}
+
+.card {
+	width: 250px;
+	height: 250px;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.read-button, .delete-button {
+	background-color: white;
+	border: none;
+	padding: 3% 0;
+	font-weight: 600;
+	font-size: 1.2rem;
+	border-radius: 25px;
+	width: 40%
+}
+
+.read-button:hover, .delete-button:hover {
+	opacity: 0.8;
+}
+
+.card-title {
+	font-size: 1.3rem;
+	font-weight: 500;
+}
+
 .read {
-	background-color: green;
+	background-color: var(--read-card-color);
 }
 
 .not-read {
-	background-color: red;
+	background-color: var(--not-read-card-color);
 }

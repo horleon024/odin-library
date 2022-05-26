@@ -75,11 +75,9 @@ function displayBooks() {
 		titleDiv.textContent = book.title;
 
 		const authorDiv = document.createElement("div");
-		authorDiv.classList.add("card-author");
 		authorDiv.textContent = `by ${book.author}`;
 
 		const pagesDiv = document.createElement("div");
-		pagesDiv.classList.add("card-pages");
 		pagesDiv.textContent = `Number of Pages: ${book.nbOfPages}`;
 
 		const isReadButton = document.createElement("button");
@@ -108,6 +106,10 @@ function displayBooks() {
 	});
 }
 
+myLibrary.push(new Book("asdd", "fghfg", 123, true));
+myLibrary.push(new Book("fdgdfgd", "fghfg", 1223, true));
+myLibrary.push(new Book("bvnb", "izuiz", 645, false));
+myLibrary.push(new Book("hgjg", "rtzr", 1567, true));
 myLibrary.push(new Book("asdd", "fghfg", 123, true));
 myLibrary.push(new Book("fdgdfgd", "fghfg", 1223, true));
 myLibrary.push(new Book("bvnb", "izuiz", 645, false));
