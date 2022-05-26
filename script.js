@@ -5,9 +5,6 @@ function Book(title, author, nbOfPages, isRead) {
 	this.author = author;
 	this.nbOfPages = nbOfPages;
 	this.isRead = isRead;
-	this.info = function() {
-		return (`${this.title} by ${this.author}, ${nbOfPages} pages, ${isRead ? "already read" : "not read yet"}`);
-	}
 }
 
 const form = document.querySelector(".form-popup");
@@ -18,3 +15,22 @@ function toggleDisplay() {
 }
 
 newBookButton.addEventListener("click", toggleDisplay);
+
+const addBookButton = document.querySelector(".add-book-button");
+
+const titleInput = document.querySelector("#title");
+const authorInput = document.querySelector("#author");
+const pagesInput = document.querySelector("#pages");
+const isReadInput = document.querySelector("#read");
+
+function addBookToLibrary() {
+	const bookToAdd = new Book(titleInput.value, authorInput.value, pagesInput.value, isReadInput.checked);
+	myLibrary.push(bookToAdd);
+	form.style.display = "none";
+	titleInput.value = "";
+	authorInput.value = "";
+	pagesInput.value = "";
+	isReadInput.checked = false;
+}
+
+addBookButton.addEventListener("click", addBookToLibrary);
