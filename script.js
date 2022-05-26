@@ -12,6 +12,8 @@ function Book(title, author, nbOfPages, isRead) {
 const form = document.querySelector(".form-popup");
 const newBookButton = document.querySelector(".newbook");
 
+const cardsContainer = document.querySelector(".books-container");
+
 function toggleDisplay() {
 	form.style.display = "block";
 }
@@ -24,6 +26,7 @@ const titleInput = document.querySelector("#title");
 const authorInput = document.querySelector("#author");
 const pagesInput = document.querySelector("#pages");
 const isReadInput = document.querySelector("#read");
+
 
 function addBookToLibrary() {
 	const bookToAdd = new Book(titleInput.value, authorInput.value, pagesInput.value, isReadInput.checked);
@@ -38,18 +41,16 @@ function addBookToLibrary() {
 
 addBookButton.addEventListener("click", addBookToLibrary);
 
-const cardsContainer = document.querySelector(".container");
-
 function toggleIsRead(event) {
 	let nodes = Array.prototype.slice.call( cardsContainer.children );
 	const nodesIndex = nodes.indexOf(event.srcElement.parentNode);
-	if (myLibrary[nodesIndex - 3].isRead) {
-		myLibrary[nodesIndex - 3].isRead = false;
+	if (myLibrary[nodesIndex].isRead) {
+		myLibrary[nodesIndex].isRead = false;
 		event.srcElement.textContent = "Not read";
 		event.srcElement.parentNode.classList.remove("read");
 		event.srcElement.parentNode.classList.add("not-read");
 	} else {
-		myLibrary[nodesIndex - 3].isRead = true;
+		myLibrary[nodesIndex ].isRead = true;
 		event.srcElement.textContent = "Read";
 		event.srcElement.parentNode.classList.remove("not-read");
 		event.srcElement.parentNode.classList.add("read");
@@ -60,7 +61,7 @@ function deleteBook(event) {
 	let nodes = Array.prototype.slice.call( cardsContainer.children );
 	const nodesIndex = nodes.indexOf(event.srcElement.parentNode);
 	cardsContainer.removeChild(event.srcElement.parentNode);
-	myLibrary.splice(nodesIndex - 3, 1);
+	myLibrary.splice(nodesIndex, 1);
 }
 
 function displayBooks() {
