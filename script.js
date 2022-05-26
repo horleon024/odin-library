@@ -109,4 +109,6 @@ function displayBooks() {
 
 myLibrary.push(new Book("asdd", "fghfg", 123, true));
 myLibrary.push(new Book("fdgdfgd", "fghfg", 1223, true));
+myLibrary.push(new Book("bvnb", "izuiz", 645, false));
+myLibrary.push(new Book("hgjg", "rtzr", 1567, true));
 displayBooks();
