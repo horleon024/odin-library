@@ -24,3 +24,11 @@
 	left: 40vw;
 	z-index: 5;
 }
+
+.read {
+	background-color: green;
+}
+
+.not-read {
+	background-color: red;
+}

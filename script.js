@@ -40,6 +40,22 @@ addBookButton.addEventListener("click", addBookToLibrary);
 
 const cardsContainer = document.querySelector(".container");
 
+function toggleIsRead(event) {
+	let nodes = Array.prototype.slice.call( cardsContainer.children );
+	const nodesIndex = nodes.indexOf(event.srcElement.parentNode);
+	if (myLibrary[nodesIndex - 3].isRead) {
+		myLibrary[nodesIndex - 3].isRead = false;
+		event.srcElement.textContent = "Not read";
+		event.srcElement.parentNode.classList.remove("read");
+		event.srcElement.parentNode.classList.add("not-read");
+	} else {
+		myLibrary[nodesIndex - 3].isRead = true;
+		event.srcElement.textContent = "Read";
+		event.srcElement.parentNode.classList.remove("not-read");
+		event.srcElement.parentNode.classList.add("read");
+	}
+}
+
 function deleteBook(event) {
 	let nodes = Array.prototype.slice.call( cardsContainer.children );
 	const nodesIndex = nodes.indexOf(event.srcElement.parentNode);
@@ -52,24 +68,39 @@ function displayBooks() {
 		if (book.isDisplayed) return;
 		const bookCard = document.createElement("div");
 		bookCard.classList.add("card");
+
 		const titleDiv = document.createElement("div");
 		titleDiv.classList.add("card-title");
 		titleDiv.textContent = book.title;
+
 		const authorDiv = document.createElement("div");
 		authorDiv.classList.add("card-author");
 		authorDiv.textContent = `by ${book.author}`;
+
 		const pagesDiv = document.createElement("div");
 		pagesDiv.classList.add("card-pages");
 		pagesDiv.textContent = `Number of Pages: ${book.nbOfPages}`;
-		if (book.isRead) bookCard.classList.add("read");
-		else bookCard.classList.add("not-read");
+
+		const isReadButton = document.createElement("button");
+		if (book.isRead) {
+			bookCard.classList.add("read");
+			isReadButton.textContent = "Read";
+		} else {
+			bookCard.classList.add("not-read");
+			isReadButton.textContent = "Not read";
+		}
+		isReadButton.classList.add("read-button");
+		isReadButton.addEventListener("click", toggleIsRead);
+
 		const deleteButton = document.createElement("button");
 		deleteButton.textContent = "Delete";
 		deleteButton.classList.add("delete-button");
 		deleteButton.addEventListener("click", deleteBook);
+
 		bookCard.appendChild(titleDiv);
 		bookCard.appendChild(authorDiv);
 		bookCard.appendChild(pagesDiv);
+		bookCard.appendChild(isReadButton);
 		bookCard.appendChild(deleteButton);
 		cardsContainer.appendChild(bookCard);
 		book.isDisplayed = true;
