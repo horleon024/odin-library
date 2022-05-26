@@ -8,6 +8,7 @@ function Book(title, author, nbOfPages, isRead) {
 	this.isDisplayed = false;
 }
 
+
 const form = document.querySelector(".form-popup");
 const newBookButton = document.querySelector(".newbook");
 
@@ -39,6 +40,13 @@ addBookButton.addEventListener("click", addBookToLibrary);
 
 const cardsContainer = document.querySelector(".container");
 
+function deleteBook(event) {
+	let nodes = Array.prototype.slice.call( cardsContainer.children );
+	const nodesIndex = nodes.indexOf(event.srcElement.parentNode);
+	cardsContainer.removeChild(event.srcElement.parentNode);
+	myLibrary.splice(nodesIndex - 3, 1);
+}
+
 function displayBooks() {
 	myLibrary.forEach((book) => {
 		if (book.isDisplayed) return;
@@ -55,10 +63,19 @@ function displayBooks() {
 		pagesDiv.textContent = `Number of Pages: ${book.nbOfPages}`;
 		if (book.isRead) bookCard.classList.add("read");
 		else bookCard.classList.add("not-read");
+		const deleteButton = document.createElement("button");
+		deleteButton.textContent = "Delete";
+		deleteButton.classList.add("delete-button");
+		deleteButton.addEventListener("click", deleteBook);
 		bookCard.appendChild(titleDiv);
 		bookCard.appendChild(authorDiv);
 		bookCard.appendChild(pagesDiv);
+		bookCard.appendChild(deleteButton);
 		cardsContainer.appendChild(bookCard);
 		book.isDisplayed = true;
 	});
 }
+
+myLibrary.push(new Book("asdd", "fghfg", 123, true));
+myLibrary.push(new Book("fdgdfgd", "fghfg", 1223, true));
+displayBooks();
