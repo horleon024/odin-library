@@ -1,3 +1,5 @@
+let myLibrary = [];
+
 function Book(title, author, nbOfPages, isRead) {
 	this.title = title;
 	this.author = author;
